@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            <title><%= title %></title>
+        </title>
+    </head>
+    <body>
+        <h1><%= title %></h1>
+        <form action='/users' method='get'>
+            <button type="submit" id="users">users</button>
+        </form><br>
+        <form action='/posts' method='get'>
+            <button type="submit" id="posts">posts</button>
+        </form><br>
+        <button id="closestUserBtn">posts of the closet users</button>
+    </body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+    $("#closestUserBtn").click(function(){
+        $.ajax({
+            type:'post',
+            data: {geo :{'lat': 45.3,
+                   'lng': 92.2 }},
+            url: '/posts/proximity',
+            success: function(res){
+                console.log(res)
+            }
+        })
+    });
+
+</script>
